@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>House of Typing - Dashboard</title>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<link rel='stylesheet'
+	href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+	integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
+	crossorigin='anonymous'>
+<link rel='stylesheet' href='resources/css/form.css'>
+<link rel='stylesheet' href='resources/css/dashboard.css'>
+<link rel='shortcut icon' href='resources/css/img/favicon.png' />
+</head>
+<body style='display: none'>
+	<div class="navbar navbar-dark bg-dark box-shadow">
+		<div class="container d-flex justify-content-between text-white">
+			<h5 class="col-9 text-white">Dashboard - The House Of Typing</h5>
+			<button class="logout btn btn-secundary col-3" type="button" href="">
+				<strong class="text-white username"></strong>
+			</button>
+			<nav class="navbar navbar-expand-sm">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link"
+						id="nav-registration-export">Inschrijvingen Registratie</a></li>
+					<li class="nav-item nav-link">|</li>
+					<li class="nav-item"><a class="nav-link"
+						id="nav-financial-registration-export">Financiele
+							Administratie</a></li>
+					<li class="nav-item nav-link">|</li>
+					<li class="nav-item"><a class="nav-link"
+						id="nav-waiting-list-export">Wachtlijsten registratie</a></li>
+					<li class="nav-item nav-link">|</li>
+					<li class="nav-item"><a class="nav-link"
+						id="nav-course-management">Cursussen beheren</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+	<div id='importExcelSuccess' class='container-fluid '
+		style='background-color: #5abf3d; color: white; text-align: center; display: none'>
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>Import successvol!</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Import van cursussen is in ons systeem
+				opgeslagen!</p>
+		</div>
+		<br>
+	</div>
+	<div id='importExcelFailed' class='container-fluid '
+		style='background-color: #d93434; color: white; text-align: center; display: none'>
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>Import cursussen is niet opgeslagen</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Er is iets fout gegaan met de import van
+				cursussen, probeert u het alstublieft opnieuw.</p>
+		</div>
+		<br>
+	</div>
+	<div id='deleteCoursesSuccess' class='container-fluid '
+		style='background-color: #5abf3d; color: white; text-align: center; display: none'>
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>Cursussen zijn verwijderd!</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Alle cursussen zijn successvol verwijderd
+				uit ons systeem!</p>
+		</div>
+		<br>
+	</div>
+	<div id='deleteCoursesFailed' class='container-fluid '
+		style='background-color: #d93434; color: white; text-align: center; display: none'>
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>Cursussen zijn niet successvol verwijderd</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Er is iets fout gegaan met het
+				verwijderen van de cursussen, probeert u het alstublieft opnieuw.</p>
+		</div>
+		<br>
+	</div>
+	<div class='container-fluid justify-content-center align-items-center'
+		id='registration-export'>
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<div class='col'>
+				<div class='container has-centered-text'>
+					<div class="row">
+						<div class="col">
+							<h3>Inschrijvingen Registratie Exporteren</h3>
+							<hr>
+							<br>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-5">
+							<b>Exporteren van alle inschrijvingen</b>
+							<p>Hier kun je een export draaien van alle deelnemers. Dit
+								betekent dus dat ALLE waarden worden uitgelezen.</p>
+							<form action="ExcelController" method="post">
+								<input name="type" style="display: none"
+									value="downloadFullExcel"> <input name="isAccountant"
+									style="display: none" value="false"> <input
+									class="btn btn-primary col"
+									value="Alle inschrijvingen exporteren" type="submit">
+							</form>
+						</div>
+						<p class='col'></p>
+						<div class="col-5">
+							<b>Exporteren van nieuwe inschrijvingen sinds laatste export</b>
+							<p>Hier kun je een export draaien van deelnemers die zich
+								hebben aangemeld sinds de laatste keer dat er een export
+								gedraaid is.</p>
+							<p>
+								Er zijn <strong id="lastExport">geen nieuwe
+									inschrijvingen</strong> die geexporteerd kunnen worden.
+							</p>
+							<form action="ExcelController" method="post">
+								<input name="type" style="display: none"
+									value="downloadLatestExcel"> <input name="isAccountant"
+									style="display: none" value="false"> <input
+									class="btn btn-primary col"
+									value="Laatst inschrijvingen exporteren" type="submit">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class='container-fluid justify-content-center align-items-center'
+		id='financial-registration-export' style='display: none'>
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<div class='col'>
+				<div class='container has-centered-text'>
+					<div class="row">
+						<div class="col">
+							<h3>Financiele Administratie Exporteren</h3>
+							<hr>
+							<br>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-5">
+							<b>Exporteren voor administratiekantoor</b>
+							<p>
+								De export voor administratie omvat de gegevens die een gebruiker
+								ingevoerd heeft bij zijn of haar betaling op rekening. <br>
+								Deze gegevens staan ook in factuursturen.nl, maar kunnen aan de
+								hand van deze lijst gecontroleerd worden en in de boekhouding
+								worden gezet.
+							</p>
+							<form action="ExcelController" method="post">
+								<input name="type" style="display: none"
+									value="downloadFullExcel"> <input name="isAccountant"
+									style="display: none" value="true"> <input
+									class="btn btn-primary col"
+									value="Alle inschrijvingen exporteren" type="submit">
+							</form>
+							<br>
+						</div>
+						<p class="col"></p>
+						<div class="col-5">
+							<b>Exporteren van nieuwe inschrijvingen voor
+								administratiekantoor sinds laatste export</b>
+							<p>Hier kun je een export draaien van deelnemers die zich
+								hebben aangemeld sinds de laatste keer dat er een export
+								gedraaid is.</p>
+							<p>
+								Er zijn <strong id="lastExportAdministration">geen
+									nieuwe inschrijvingen</strong> die geexporteerd kunnen worden.
+							</p>
+							<form action="ExcelController" method="post">
+								<input name="type" style="display: none"
+									value="downloadLatestExcel"> <input name="isAccountant"
+									style="display: none" value="true"> <input
+									class="btn btn-primary col"
+									value="Laatst inschrijvingen exporteren" type="submit">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class='container-fluid justify-content-center align-items-center'
+		id='waiting-list-export' style="display: none">
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<div class='col'>
+				<div class='container has-centered-text'>
+					<div class="row">
+						<div class="col">
+							<h3>Wachtlijsten van cursussen exporteren</h3>
+							<hr>
+							<br>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<p class='col'></p>
+						<div class="col-5">
+							<b>Exporteren van de nieuwste wachtlijst</b>
+							<p>Hier kun je een export draaien van alle deelnemers. Dit
+								betekent dus dat ALLE waarden worden uitgelezen.</p>
+							<form action="ExcelController" method="post">
+								<input name="type" style="display: none"
+									value="downloadWaitingList"> <input
+									class="btn btn-primary col"
+									value="Wachtlijst exporteren" type="submit">
+							</form>
+						</div>
+						<p class='col'></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class='container-fluid justify-content-center align-items-center'
+		id='course-management' style='display: none'>
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<div class='col'>
+				<div class='container has-centered-text'>
+					<div class="row">
+						<div class="col">
+							<h3>Cursussen beheren</h3>
+							<hr>
+							<br>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-5">
+							<b>Verwijderen van alle cursussen</b>
+							<p>Het verwijderen van alle cursussen. Dit kan niet ongedaan
+								worden gemaakt!!</p>
+							<button type="button" class=" col btn btn-primary"
+								data-toggle="modal" data-target="#deleteAllCourses">Verwijder
+								alle cursussen.</button>
+						</div>
+						<div class="col"></div>
+						<div class="col-5">
+							<b>Exporteren van alle cursussen</b>
+							<p>Hier kun je een export draaien van alle scholen en
+								cursussen in ons systeem. Dit betekent dus dat ALLE waarden
+								worden uitgelezen.</p>
+							<form action="ExcelController" method="post">
+								<input name="type" style="display: none"
+									value="downloadAllCourses"> <input
+									class="btn btn-primary col" value="Alle Cursussen exporteren"
+									type="submit">
+							</form>
+						</div>
+					</div>
+					<div class='row'>
+						<div class="col"></div>
+						<div class="col-5">
+							<b>Nieuw bestand importeren</b><br>
+							<p>Upload hieronder eerst een .xlsx (Excel) bestand. Zodra je
+								dit bestand geupload hebt, kun je de gegevens importeren naar de
+								database.</p>
+							<form action="ExcelController" method="post"
+								enctype="multipart/form-data" action="#">
+								<input name="type" style="display: none" value="upload">
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="customFile"
+										name="file"> <label class="custom-file-label"
+										for="file">Kies een bestand</label>
+								</div>
+								<br> <br> <input class="btn btn-primary col"
+									value="Upload bestand" type="submit">
+							</form>
+						</div>
+						<div class="col"></div>
+					</div>
+				</div>
+
+			</div>
+			<br> <br>
+		</div>
+		<br> <br>
+	</div>
+	<!-- modals -->
+	<div class="modal" id="deleteAllCourses" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-primary">Weet u zeker dat u alle
+						cursussen wilt verwijderen??</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-footer">
+					<form action="CourseController" method="post">
+						<input name="type" style="display: none" value="deleteAllCourses">
+						<input type="submit" class="btn btn-danger" value="Ja">
+					</form>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Nee</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	<script src='https://code.jquery.com/jquery-3.5.1.js'
+		integrity='sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc='
+		crossorigin='anonymous'></script>
+	<script type='text/javascript' src='resources/js/dashboard.js'></script>
+	<script
+		src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+		integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+		crossorigin='anonymous'></script>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<title>House of Typing - Inschrijven</title>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<link rel='stylesheet'
+	href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+<link rel='stylesheet'
+	href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
+<link rel='stylesheet' href='resources/css/form.css'>
+<link rel='shortcut icon' href='resources/css/img/favicon.png' />
+</head>
+<body>
+	<header>
+		<a href='https://www.thehouseoftyping.nl/' class='col-8'
+			title='ECO House of Typing' style='text-decoration: none'> <img
+			src='https://www.thehouseoftyping.nl/assets/dist/images/layout/logo-eco-house-of-typing.png'
+			height='75' width='75' alt='Eco The House of Typing'> <span
+			style='color: #01ace4; font-family: Arial Narrow, sans-serif; text-decoration: none; text-transform: uppercase;'><b>De
+					volgende stap in typetrainingen</b></span>
+		</a> <a class='btn btn-primary col-2 text-white'
+			href='https://www.thehouseoftyping.nl/'
+			style='float: right; background-color: #01ace4; border-color: #01ace4; margin-top: 5px; margin-right: 25px;'>Terug
+			naar<br>The House of Typing
+		</a>
+	</header>
+	<!-- BeginSection -->
+	<div class='container-fluid text-white'
+		style='background-color: #01ace4' id="beginSection">
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>Inschrijven</h1>
+		</div>
+		<div class='row justify-content-center align-items-center'>
+			<div class='col col-sm-10 col-md-10 col-lg-10'>
+				<div class="form-group text-center">
+					<input type="radio" name="course-type" id="course-type-1" value="1"
+						checked="" class="course-type"> <label for="course-type-1">
+						<span></span> Kinderversie
+					</label> <input type="radio" class="course-type" name="course-type"
+						id="course-type-2" value="2"> <label for="course-type-2">
+						<span></span> Volwassenenversie
+					</label><br> <br> <label for="course_option-1">Beschik
+						jij over een code?</label><br> <input type="radio"
+						name="course_option" id="course_option-1" value="1" checked=""
+						class="course_option"> <label for="course_option-1">
+						<span></span> Ja, ik heb een code.
+					</label> <input type="radio" class="course_option" name="course_option"
+						id="course_option-2" value="2"> <label
+						for="course_option-2"> <span></span> Nee, ik heb geen
+						code.
+					</label><br>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- CodeSection -->
+	<div class='container-fluid bg-light text-dark' id='codeSection'>
+		<br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>JOUW CODE</h1>
+		</div>
+		<div class='row justify-content-center align-items-center'>
+			<div class='col col-sm-10 col-md-10 col-lg-10'>
+				<div class='form-group text-center'>
+					<form action='' id='courseForm'>
+						<p>Vul hieronder jouw code in.</p>
+						<!--  form items -->
+						<div class='form-check-inline'>
+							<br> <input
+								class='form-control code alfaCode firstCode split' maxlength='1'
+								minlength='1' size='1' style='text-transform: uppercase;'
+								onkeypress='return /[a-z]/i.test(event.key)' required> <input
+								class='form-control code alfaCode split' minlength='1'
+								maxlength='1' size='1' style='text-transform: uppercase;'
+								onkeypress='return /[a-z]/i.test(event.key)' required> <input
+								class='form-control code alfaCode split' minlength='1'
+								maxlength='1' size='1' style='text-transform: uppercase;'
+								onkeypress='return /[a-z]/i.test(event.key)' required> <input
+								class='form-control code alfaCode split' minlength='1'
+								maxlength='1' size='1' style='text-transform: uppercase;'
+								onkeypress='return /[a-z]/i.test(event.key)' required> <input
+								class='form-control code numberCode split' minlength='5'
+								maxlength='5' size='5'
+								onkeypress='return /^[0-9]*$/i.test(event.key)' required>
+						</div>
+						<br> <br>
+						<button type='submit' class='btn btn-primary'
+							style='background-color: #01ace4; border-color: #01ace4;'>Verzend
+							code</button>
+						<br>
+						<div class="loader" id="courseCodeLoader" style='display: none'></div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<br>
+	</div>
+	<div id='wrongCode' class='container-fluid '
+		style='background-color: #1ac6fe; color: white; text-align: center; display: none'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>JOUW CODE</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Er is helaas geen school gevonden bij de
+				door jou ingevulde code.</p>
+			<a href='' id='wrongCodeButton'
+				style='color: white; padding: 7px; border: 1px solid white'>
+				Andere code proberen </a>
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='courseIsFullBefore' class='container-fluid '
+		style='background-color: #1ac6fe; color: white; text-align: center; display: none'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>HET MAXIMALE AANTAL INSCHRIJVINGEN VOOR DEZE CURSUS IS
+				BEREIKT!!</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Helaas zit de cursusgroep, waarvoor je je
+				wilt inschrijven, vol. Wij adviseren jou om toch je inschrijving af
+				te maken.</p>
+			<p style='color: white'>Je komt dan op de wachtlijst. Het kan zo
+				zijn dat er cursisten gaan afvallen. Mogelijk zou je dan alsnog met
+				de cursus mee kunnen gaan doen.</p>
+			<p style='color: white'>Het zou ook mogelijk kunnen zijn dat een
+				extra cursusgroep gevormd gaat worden</p>
+			<p style='color: white'>Uiteraard hoef je nu niets te betalen.</p>
+
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='courseIsFullAfter' class='container-fluid '
+		style='background-color: #1ac6fe; color: white; text-align: center; display: none'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>HET MAXIMALE AANTAL INSCHRIJVINGEN VOOR DEZE CURSUS IS
+				BEREIKT!!</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>
+				Beste <b id='nameOfStudent'></b>, Wat fijn dat je jezelf
+				ingeschreven hebt voor de typecursus. De cursusgroep zit echter al
+				volledig vol.
+			</p>
+			<p style='color: white'>Dat wil niet automatisch zeggen dat je
+				niet mee zult kunnen gaan doen. Jij bent de eerste op de wachtlijst
+				en zodra iemand uitvalt zullen we contact met jou opnemen.</p>
+			<p style='color: white'>Ook gebeurt het regelmatig (afhankelijk
+				van het aantal kandidaten op de wachtlijst) dat besloten wordt om
+				een tweede groep op te starten.</p>
+			<p style='color: white'>Uiteraard hoef je pas te betalen als je
+				daadwerkelijk mee kunt gaan doen.</p>
+
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='processRegistration' class='container-fluid '
+		style='background-color: #1ac6fe; color: white; text-align: center; display: none; height: 350px'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>INSCHRIJVING AAN HET VERZENDEN</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Uw inschrijving is aan het verzenden,
+				heeft u alstublieft geduld.</p>
+			<div class="loader"></div>
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='processTakesLongerThenExpected' class='container-fluid '
+		style='background-color: #1ac6fe; color: white; text-align: center; display: none; height: 350px'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>INSCHRIJVING VERZENDEN DUURT LANGER DAN VERWACHT</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Vanwege de drukte op onze site duurt de
+				verwerking van uw betaling een aantal seconden langer dan
+				gebruikelijk. Excuus en wij vragen nog een kort moment geduld. Bij
+				eventuele vragen verwijs ik u naar het telefoonnummer 0165-318832.</p>
+			<div class="loader"></div>
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='registrationSuccess' class='container-fluid '
+		style='background-color: #65cf75; color: white; text-align: center; display: none; height: 350px'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>INSCHRIJVING VERZONDEN</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Uw inschrijving is binnen bij ons! U
+				krijgt zo snel mogelijk een mail met de toegangscode!</p>
+			<p style='color: white'>Heeft u gekozen voor termijnbetaling? Dan
+				krijgt u binnekort een factuur toegezonden!</p>
+			<a href='https://www.thehouseoftyping.nl/'
+				style='color: white; padding: 7px; border: 1px solid white'>
+				Terug naar The House Of Typing </a>
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='paymentFailed' class='container-fluid '
+		style='background-color: #edbc40; color: white; text-align: center; display: none; height: 350px'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>BETALING MISLUKT</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Er is iets fout gegaan met uw betaling.
+				Maar geen zorgen! Uw inschrijving is binnen en u krijgt snel een
+				factuur toegestuurd en uw inlogcodes worden naar u gestuurd!</p>
+			<p style='color: white'>
+				Lukt het inschrijven meerdere malen niet? Bel ons gerust op 0165 -
+				31 88 32<br>of stuur een mailtje naar info@econet.nl
+			</p>
+			<a href=''
+				style='color: white; padding: 7px; border: 1px solid white'>
+				Opnieuw proberen </a>
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='processPayment' class='container-fluid '
+		style='background-color: #edbc40; color: white; text-align: center; display: none; height: 350px;'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>BETALING VERWERKEN</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Betaling word nagekeken...</p>
+			<div class="loader"></div>
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='paymentSuccess' class='container-fluid '
+		style='background-color: #65cf75; color: white; text-align: center; display: none; height: 350px'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>INSCHRIJVING VERZONDEN</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Uw inschrijving is binnen bij ons! U
+				krijgt zo snel mogelijk een mail met de toegangscode!</p>
+			<p style='color: white'>Heeft u gekozen voor termijnbetaling? Dan
+				krijgt u binnekort een factuur toegezonden!</p>
+			<a href='https://www.thehouseoftyping.nl/'
+				style='color: white; padding: 7px; border: 1px solid white'>
+				Terug naar The House Of Typing </a>
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='registrationFailed' class='container-fluid'
+		style='background-color: #edbc40; color: white; text-align: center; display: none; height: 350px'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>BETALING MISLUKT</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Er is iets fout gegaan met uw betaling.
+				Maar geen zorgen! Uw inschrijving is binnen en u krijgt snel een
+				factuur toegestuurd en uw inlogcodes worden naar u gestuurd!</p>
+			<p style='color: white'>
+				Lukt het inschrijven meerdere malen niet? Bel ons gerust op 0165 -
+				31 88 32<br>of stuur een mailtje naar info@econet.nl
+			</p>
+			<a href=''
+				style='color: white; padding: 7px; border: 1px solid white'>
+				Opnieuw proberen </a>
+		</div>
+		<br> <br> <br>
+	</div>
+	<div id='registrationFailed' class='container-fluid '
+		style='background-color: #eb4d5d; color: white; text-align: center; display: none; height: 350px;'>
+		<br> <br> <br>
+		<div class='row justify-content-center align-items-center'>
+			<h1>INSCHRIJVING NIET VERZONDEN</h1>
+		</div>
+		<div class='text-white has-centered-text'>
+			<p style='color: white'>Er is iets fout gegaan met uw
+				inschrijving. Probeer het alstublieft opnieuw.</p>
+			<p style='color: white'>
+				Lukt het inschrijven meerdere malen niet? Bel ons gerust op 0165 -
+				31 88 32<br>of stuur een mailtje naar info@econet.nl
+			</p>
+			<a href=''
+				style='color: white; padding: 7px; border: 1px solid white'>
+				Opnieuw proberen </a>
+		</div>
+		<br> <br> <br>
+	</div>
+
+	<form id='registrationForm' action='' autocomplete='off'
+		style='display: none' method='post'>
+		<div id="welcomeStudent"
+			style='background-color: #0186b1; color: white; text-align: center;'>
+			<br>
+			<div class='text-white has-centered-text'>
+				<h3 style='text-align: center;'>
+					Van harte welkom, leerling van <strong id='schoolName'
+						class="text-warning"></strong>. <br> Wat ontzettend leuk dat
+					jij gaat leren typen!
+				</h3>
+				<br>
+				<h3 style='text-align: center;'>
+					De cursusprijs die geldt voor jouw school is &euro; <strong
+						class="coursePrice"></strong>.
+				</h3>
+				<h5>
+					Als een familielid zich ook inschrijft (thuiscursus, begeleid door
+					onze docenten), betaalt dit familielid &euro; <strong
+						class="secondCoursePrice"></strong>.
+				</h5>
+			</div>
+			<br>
+		</div>
+		<!-- PersonSection -->
+		<div class='container-fluid text-white'
+			style='background-color: #1ac6fe'>
+			<br>
+			<div class='row justify-content-center align-items-center'>
+				<h1>Gegevens cursist</h1>
+				<hr>
+			</div>
+			<div class='row justify-content-center align-items-center'>
+				<div class='col col-sm-9 col-md-9 col-lg-9'>
+					<div class='form-group text-center'>
+						<!--  form items -->
+						<input type='hidden' name='school_code' id='courseCode'>
+					</div>
+					<div class='form-group text-center'>
+						<div class='form-row'>
+							<label for='gender' class='control-label col'>Geslacht *</label>
+							<p class='col-1'></p>
+							<label for='birthday' class='control-label col'>Geboortedatum
+								*</label><br>
+						</div>
+						<div class='form-row'>
+							<div class='form-check-inline col'>
+								<select name='gender' id='gender' required
+									class='form-control col'>
+									<option value=''>Kies een geslacht</option>
+									<option value='m'>Man</option>
+									<option value='v'>Vrouw</option>
+								</select>
+								<p class='col-1'></p>
+								<input type='text' name='birthday' class='form-control col'
+									id='birthday' placeholder='(DD-MM-JJJJ)' required
+									pattern='(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}'>
+							</div>
+						</div>
+					</div>
+					<div class='form-group text-center'>
+						<div class='form-row'>
+							<label for='firstName' class='control-label col'>Voornaam
+								*</label>
+							<p class='col-1'></p>
+							<label for='insertion' class='control-label col'>Tussenvoegsel</label><br>
+						</div>
+						<div class='form-row'>
+							<div class='form-check-inline col'>
+								<input type='text' name='firstName' class='form-control col'
+									id='firstName' placeholder='Voornaam' required>
+								<p class='col-1'></p>
+								<input type='text' name='insertion' class='form-control col'
+									id='insertion' placeholder='Tussenvoegsel'>
+							</div>
+						</div>
+					</div>
+					<div class='form-group text-center'>
+						<div class='form-row'>
+							<label for='lastName' class='control-label col'
+								id='lastNameLabel'>Achternaam *</label>
+							<p class='col-1 lastNameLabelCol'></p>
+							<label for='parentsName' class='control-label col'
+								id='labelParentsName'>Naam ouder/verzorger</label><br>
+						</div>
+						<div class='form-row'>
+							<div class='form-check-inline col'>
+								<input type='text' name='lastName' class='form-control col'
+									id='lastName' placeholder='Achternaam' required>
+								<p class='col-1 lastNameColAfter'></p>
+								<input type='text' name='parentsName' id='parentsName'
+									class='form-control col' placeholder='Naam ouder/verzorger'>
+							</div>
+						</div>
+					</div>
+					<div class='form-group text-center'>
+						<div class='form-row'>
+							<label for='addressNr' class='control-label col'>Straatnaam
+								*</label>
+							<p class='col-1'></p>
+							<label for='addressNr' class='control-label col'>Huisnr.
+								*</label><br>
+						</div>
+						<div class='form-row'>
+							<div class='form-check-inline col'>
+								<input type='text' name='streetName' class='form-control col'
+									id='streetName' placeholder='Straatnaam' required>
+								<p class='col-1'></p>
+								<input type='text' name='addressNr' class='form-control col'
+									id='addressNr' placeholder='Huisnr.' required>
+							</div>
+						</div>
+					</div>
+					<div class='form-group text-center'>
+						<div class='form-row'>
+							<label for='zipCode' class='control-label col'>Stad *</label>
+							<p class='col-1'></p>
+							<label for='zipCode' class='control-label col'>Postcode *</label><br>
+						</div>
+						<div class='form-row'>
+							<div class='form-check-inline col'>
+								<input type='text' name='town' class='form-control col'
+									id='town' placeholder='Stad' required>
+								<p class='col-1'></p>
+								<input type='text' name='zipCode' class='form-control col'
+									id='zipCode' placeholder='0000 AA' required>
+							</div>
+						</div>
+					</div>
+					<div class='form-group text-center'>
+						<div class='form-row'>
+							<label for='email' class='control-label col' id='labelEmail'>E-mailadres
+								ouder/verzorger *</label>
+							<p class='col-1'></p>
+							<label for='phoneNumber' class='control-label col'>Telefoonnummer
+								*</label><br>
+						</div>
+						<div class='form-row'>
+							<div class='form-check-inline col'>
+								<input type='email' name='email' class='form-control' id='email'
+									placeholder='E-mailadres' required>
+								<p class='col-1'></p>
+								<input type='text' name='phoneNumber' class='form-control'
+									id='phoneNumber' placeholder='Telefoonnummer' required>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+		</div>
+		<div id='secondPerson'></div>
+		<!-- Another Person -->
+		<div
+			style='background-color: #0186b1; color: white; text-align: center'>
+			<br>
+			<div class='text-white has-centered-text'>
+				<a href='' id='secondPersonButton' style='color: white'
+					data-user='1'>&#43; Nog een deelnemer toevoegen (slechts &euro;
+					<strong class='secondCoursePrice'></strong> per extra inschrijving)
+				</a>
+			</div>
+			<br>
+		</div>
+		<!-- No Payment Section -->
+		<div class='container-fluid text-white'
+			style='background-color: #0199cb; display: none;' id="noPayment">
+			<br>
+			<div class='row justify-content-center align-items-center'>
+				<h1>Inschrijving Verzenden</h1>
+				<br>
+			</div>
+			<div class='row justify-content-center align-items-center'>
+				<div class='col col-sm-6 col-md-6 col-lg-6'
+					style='background-color: #0186b1'>
+					<div class='container has-centered-text'>
+						<div class='terms col'>
+							<br> <input type='checkbox' name='terms' value='1'
+								id="termsNoPayment"> Ik ga akkoord met de <a
+								href='https://www.thehouseoftyping.nl/downloads/algemene-voorwaarden.pdf'
+								target='_blank' title='Algemene inschrijfvoorwaarden'
+								style='color: white !important; text-decoration: none !important'><b>algemene
+									inschrijfvoorwaarden</b></a> en ik geef mijn toestemming aan The House
+							of Typing om de van mij bekende gegevens te gebruiken ten behoeve
+							van de cursusadministratie en ten behoeve van de rapportage.
+						</div>
+						<br> <input type='submit'
+							class='btn btn-primary col text-white' value='INSCHRIJVEN'
+							id="formSubmitWithoutPayment"
+							style='background-color: #01ace4; border-color: #01ace4;'><br>
+						<br>
+					</div>
+
+				</div>
+			</div>
+			<br> <br>
+		</div>
+		<!-- PaymentSection -->
+		<div class='container-fluid text-white'
+			style='background-color: #0199cb;' id="payment">
+			<br>
+			<div class='row justify-content-center align-items-center'>
+				<h1>Afrekenen</h1>
+				<br>
+			</div>
+			<div class='row justify-content-center align-items-center'>
+				<h4 class='text-white has-centered-text'>
+					Kies hieronder hoe je de training wilt betalen.<br>&euro; <span
+						class='coursePrice' id='mainPrice'></span> <small>(Bij
+						betaling middels iDeal)</small>
+				</h4>
+			</div>
+			<div class='row justify-content-center align-items-center'>
+				<div class='col col-sm-6 col-md-6 col-lg-6'
+					style='background-color: #0186b1'>
+					<div class='container'>
+						<br>
+						<h5>Betaalwijze:</h5>
+						<input type='radio' name='payment_option' value='1' checked
+							class='payment_option fullPayment'> In een keer<br>
+						<input type='radio' class='payment_option invoicePayment'
+							name='payment_option' value='4'> In 4 termijnen van
+						&euro;<i id='coursePrice4'></i><br> <input type='radio'
+							class='payment_option invoicePayment' name='payment_option'
+							value='12'> In 12 termijnen van &euro;<i
+							id='coursePrice12'></i><br> <b class='text-white'
+							style='font-size: 20px'>Let op, termijnbetalingen zijn
+							duurder!</b> <br> <br>
+						<hr>
+						<br>
+					</div>
+					<div class='container has-centered-text'>
+						<div id='fullPayment'>
+							<h5>
+								<label for='bank' class='control-label col'>Kies een
+									bank *</label>
+							</h5>
+							<br> <select name='bank' class='form-control col' id='bank'
+								required>
+								<option value='' selected>Kies een bank</option>
+								<option value='ideal_ABNANL2A'>ABN AMRO</option>
+								<option value='ideal_INGBNL2A'>ING</option>
+								<option value='ideal_RABONL2U'>Rabobank</option>
+								<option value='ideal_ASNBNL21'>ASN Bank</option>
+								<option value='ideal_BUNQNL2A'>bunq</option>
+								<option value='ideal_HANDNL2A'>Handelsbanken</option>
+								<option value='ideal_KNABNL2H'>Knab</option>
+								<option value='ideal_MOYONL21'>Moneyou</option>
+								<option value='ideal_RBRBNL21'>RegioBank</option>
+								<option value='ideal_SNSBNL2A'>SNS</option>
+								<option value='ideal_TRIONL2U'>Triodos Bank</option>
+								<option value='ideal_FVLBNL22'>van Lanschot</option>
+							</select>
+						</div>
+						<!--  form items -->
+						<div id='invoicePayment' style='display: none;'>
+							<h5>Betaling geschied via factuur.</h5>
+							<label for='nameAccountHolder'>Naam rekeninghouder *</label> <input
+								type='text' name='nameAccountHolder' id='nameAccountHolder'
+								class='form-control' placeholder='Naam rekeninghouder'><br>
+							<label for='iban'>IBAN *</label> <input type='text' name='iban'
+								id='iban' class='form-control' placeholder='IBAN'
+								pattern='^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{10}([a-zA-Z0-9]?){0,16}$'
+								maxlength='18'>
+						</div>
+						<hr>
+						<div class='terms col'>
+							<br> <input type='checkbox' name='terms' value='1' required
+								id="termsPayment"> Ik ga akkoord met de <a
+								href='https://www.thehouseoftyping.nl/downloads/algemene-voorwaarden.pdf'
+								target='_blank' title='Algemene inschrijfvoorwaarden'
+								style='color: white !important; text-decoration: none !important'><b>algemene
+									inschrijfvoorwaarden</b></a>. Ik verplicht mij tot de betaling van het
+							gehele cursus/begeleidingsbedrag en ik geef mijn toestemming aan
+							The House of Typing om de van mij bekende gegevens te gebruiken
+							ten behoeve van de cursusadministratie en van de rapportage.
+						</div>
+						<br> <input type='submit'
+							class='btn btn-primary col text-white'
+							value='AFREKENEN EN INSCHRIJVEN' id="formSubmit"
+							style='background-color: #01ace4; border-color: #01ace4;'><br>
+						<br>
+					</div>
+
+				</div>
+			</div>
+			<br> <br>
+		</div>
+	</form>
+	<footer style='background-color: #01ace4; color: white'>
+		<br> <br> <br>
+		<section class='container'>
+			<div class='row'>
+				<div class='col'>
+					<span class='payoff'> De nieuwe norm in leren typen </span>
+				</div>
+				<div class='col3'>
+					<img src='resources/css/img/logo.png'><br>
+					<p style='text-align: center'>
+						&copy;Econet
+						<script>
+							document.write(new Date().getFullYear())
+						</script>
+					</p>
+				</div>
+				<div class='col'>
+					<p>Heeft u vragen over ons product? Neemt u dan gerust contact
+						met ons op en wij informeren u graag verder.</p>
+					<p style='font-size: 24px'>
+						T: 0165 - 31 88 32<br> E: info@econet.nl
+					</p>
+				</div>
+			</div>
+		</section>
+	</footer>
+	<footer class='navigation' style='background-color: #0186b1'>
+		<br>
+		<div class='container'>
+			<div class='row has-centered-text'>
+				<a
+					href='https://www.thehouseoftyping.nl/downloads/algemene-voorwaarden.pdf'
+					rel='nofollow' class='col' target='_blank'
+					title='Algemene voorwaarden'
+					style='text-decoration: none; color: white; text-align: center;'>Algemene
+					voorwaarden</a> <a
+					href='https://www.thehouseoftyping.nl/downloads/klachtenreglement.pdf'
+					rel='nofollow'
+					style='text-decoration: none; color: white; text-align: center;'
+					target='_blank' class='col' title='Klachtenreglement ECO'>Klachtenreglement
+					ECO</a> <a
+					href='https://www.thehouseoftyping.nl/downloads/klachtenprocedure.pdf'
+					rel='nofollow' class='col'
+					style='text-decoration: none; color: white; text-align: center;'
+					target='_blank' title='Klachtenprocedure'>Klachtenprocedure</a>
+			</div>
+		</div>
+		<br>
+	</footer>
+	<script src='https://code.jquery.com/jquery-3.5.1.js'
+		integrity='sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc='
+		crossorigin='anonymous'></script>
+	<script
+		src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+		integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+		crossorigin='anonymous'></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	<script type='text/javascript' src='resources/js/form.js'></script>
+
+	<script type='text/javascript' src='resources/js/mollie.js'></script>
+</body>
+</html>

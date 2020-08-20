@@ -1,0 +1,97 @@
+@charset "ISO-8859-1";
+
+.inps {
+	margin: 0px;
+}
+
+.payoff {
+	display: block;
+	font-family: Raleway, sans-serif;
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	letter-spacing: 10px;
+	line-height: 3rem;
+	color: white;
+	text-align: right;
+}
+
+hr {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.closeSecondPerson button {
+	position: absolute;
+	right: 0px;
+	margin-right: -10% !important;
+}
+.loader {
+	margin: auto;
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  animation: spin 1.5s linear infinite;
+}
+.checkBoxContainer {
+}
+
+.checkBoxContainer a {
+}
+/* Hide the browser's default radio button */
+.checkBoxContainer input {
+  opacity: 0;
+  cursor: pointer;
+}
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* When the radio button is checked, add a blue background */
+.checkBoxContainer input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.checkBoxContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkBoxContainer .checkmark:after {
+  left: 6px;
+  top: 1.5px;
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
