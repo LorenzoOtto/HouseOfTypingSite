@@ -47,8 +47,8 @@ public class Transaction {
 		Amount amount = new Amount("EUR", value);
 		pr.setAmount(amount);
 		pr.setDescription("Typecursus The House Of Typing");
-//		pr.setRedirectUrl(Optional.ofNullable("https://inschrijventypecursus.nl/"));
-		pr.setRedirectUrl(Optional.ofNullable("http://localhost:8080/inschrijventypecursus/"));
+		pr.setRedirectUrl(Optional.ofNullable("https://inschrijventypecursus.nl/"));
+//		pr.setRedirectUrl(Optional.ofNullable("http://localhost:8080/inschrijventypecursus/"));
 		pr.setLocale(Optional.ofNullable(Locale.nl_NL));
 		pr.setMethod(Optional.ofNullable(PaymentMethod.IDEAL));
 		pr.setIssuer(Optional.ofNullable(issuer));
