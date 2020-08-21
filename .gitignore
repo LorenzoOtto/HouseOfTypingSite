@@ -29,6 +29,6 @@ bin/
 /target/
 
 #ignore file
-src/main/resources/
+src/main/resources/sql.properties
 bin/
 /target/
