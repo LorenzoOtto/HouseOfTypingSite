@@ -27,20 +27,20 @@ function getAllCorrectInformation() {
 	allMainInformation = allMainInformation + courseCode;
 	allMainInformation = allMainInformation + "," + $("#gender").val();
 	allMainInformation = allMainInformation + "," + $("#birthday").val();
-	allMainInformation = allMainInformation + "," + $("#firstName").val();
+	allMainInformation = allMainInformation + "," + $("#firstName").val().split(",").join("");
 	if($("#insertion").val()=="") {
 		allMainInformation = allMainInformation + "," + "";
 	} else {
-	allMainInformation = allMainInformation + "," + $("#insertion").val();
+	allMainInformation = allMainInformation + "," + $("#insertion").val().split(",").join("");
 	}
-	allMainInformation = allMainInformation + "," + $("#lastName").val();
-	allMainInformation = allMainInformation + "," + parentsName;
-	allMainInformation = allMainInformation + "," + $("#streetName").val();
-	allMainInformation = allMainInformation + "," + $("#town").val();
-	allMainInformation = allMainInformation + "," + $("#addressNr").val();
-	allMainInformation = allMainInformation + "," + $("#zipCode").val();
-	allMainInformation = allMainInformation + "," + $('#email').val();
-	allMainInformation = allMainInformation + "," + $("#phoneNumber").val();
+	allMainInformation = allMainInformation + "," + $("#lastName").val().split(",").join("");
+	allMainInformation = allMainInformation + "," + parentsName.split(",").join("");
+	allMainInformation = allMainInformation + "," + $("#streetName").val().split(",").join("");
+	allMainInformation = allMainInformation + "," + $("#town").val().split(",").join("");
+	allMainInformation = allMainInformation + "," + $("#addressNr").val().split(",").join("");
+	allMainInformation = allMainInformation + "," + $("#zipCode").val().split(",").join("");
+	allMainInformation = allMainInformation + "," + $('#email').val().split(",").join("");
+	allMainInformation = allMainInformation + "," + $("#phoneNumber").val().split(",").join("");
 	allMainInformation = allMainInformation + "," + bank;
 	allMainInformation = allMainInformation + "," + nameAccountHolder;
 	allMainInformation = allMainInformation + "," + iban;

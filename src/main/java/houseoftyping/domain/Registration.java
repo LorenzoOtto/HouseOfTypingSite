@@ -1,5 +1,6 @@
 package houseoftyping.domain;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +88,7 @@ public class Registration {
 		}
 	}
 
-	public void save() {
+	public void save() throws SQLException {
 		SQLConnection sql = new SQLConnection();
 		sql.saveCompleteRegistration(this);
 	}
@@ -320,4 +321,16 @@ public class Registration {
 	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+
+	@Override
+	public String toString() {
+		return "Registration [courseCode=" + courseCode + ", gender=" + gender + ", birthDay=" + birthDay
+				+ ", firstName=" + firstName + ", insertion=" + insertion + ", lastName=" + lastName + ", parentsName="
+				+ parentsName + ", address=" + address + ", addressNr=" + addressNr + ", zipCode=" + zipCode + ", town="
+				+ town + ", email=" + email + ", phoneNumber=" + phoneNumber + ", secondRegistrations="
+				+ secondRegistrations + ", paymentOption=" + paymentOption + ", bank=" + bank + ", nameAccountHolder="
+				+ nameAccountHolder + ", iban=" + iban + ", mandateDate=" + mandateDate + ", totalPrice=" + totalPrice
+				+ ", price=" + price + ", mollieId=" + mollieId + ", molliePayment=" + molliePayment + "]";
+	}
+	
 }

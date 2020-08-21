@@ -75,8 +75,13 @@ public class FormController extends HttpServlet {
 			if (registration.getCourseCode() == null) {
 				registration.setCourseCode("");
 			}
-			registration.save();
-			if(registration.getPaymentOption().equals("1")) {
+			try {
+				registration.save();
+			} catch (Exception E) {
+				E.printStackTrace();
+				out.print("false");
+			}
+			if (registration.getPaymentOption().equals("1")) {
 				out.print(registration.getMolliePayment().getLinks().getCheckout().getHref());
 			} else {
 				out.print("saved");

@@ -41,7 +41,7 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean login(String username, String password) {
 		String query = "SELECT * FROM user where username=?";
 		try {
@@ -105,7 +105,7 @@ public class SQLConnection {
 			cell.setCellValue(cellHeaderNames[i]);
 		}
 		String query = "SELECT * FROM registration";
-		CellStyle oddPriceColor = workbook.createCellStyle();	
+		CellStyle oddPriceColor = workbook.createCellStyle();
 		oddPriceColor.setFillBackgroundColor(IndexedColors.RED.getIndex());
 		oddPriceColor.setFillPattern(FillPatternType.DIAMONDS);
 		try {
@@ -117,7 +117,7 @@ public class SQLConnection {
 				Row row = sheet.createRow(rowCount++);
 				for (int i = 2; i < 21; i++) {
 					Cell cell = row.createCell(columnCount++);
-					if(rs.getString(2).equals("AWNM50000")) {
+					if (rs.getString(2).equals("AWNM50000")) {
 						cell.setCellStyle(oddPriceColor);
 					}
 					cell.setCellValue(rs.getString(i));
@@ -150,7 +150,7 @@ public class SQLConnection {
 				cell.setCellValue(cellHeaderNames[i]);
 			}
 			String query = "SELECT * FROM registration where `registration_id` > ?";
-			CellStyle oddPriceColor = workbook.createCellStyle();	
+			CellStyle oddPriceColor = workbook.createCellStyle();
 			oddPriceColor.setFillBackgroundColor(IndexedColors.RED.getIndex());
 			oddPriceColor.setFillPattern(FillPatternType.DIAMONDS);
 			try {
@@ -163,7 +163,7 @@ public class SQLConnection {
 					Row row = sheet.createRow(rowCount++);
 					for (int i = 2; i < 21; i++) {
 						Cell cell = row.createCell(columnCount++);
-						if(rs.getString(2).equals("AWNM50000")) {
+						if (rs.getString(2).equals("AWNM50000")) {
 							cell.setCellStyle(oddPriceColor);
 						}
 						cell.setCellValue(rs.getString(i));
@@ -198,7 +198,7 @@ public class SQLConnection {
 			ResultSet rs = stmn.executeQuery(query);
 			while (rs.next()) {
 				columnCount = 0;
-				
+
 				Row row = sheet.createRow(rowCount++);
 				for (int i = 5; i < 21; i++) {
 					if (i == 8 || i == 14) {
@@ -396,75 +396,67 @@ public class SQLConnection {
 		}
 	}
 
-	public void saveCompleteRegistration(Registration reg) {
+	public void saveCompleteRegistration(Registration reg) throws SQLException {
 		String query = "INSERT INTO registration (course_code, gender, birthdate, first_name, insertion, last_name, parents_name, address, town, address_nr, zipcode, email, phone_number, iban, name_bank_holder, payment_option, course_price, mandate_date, completed_mollie, mollie_id)"
 				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		try {
-			PreparedStatement preparedStmt = con.prepareStatement(query);
-			int i = 1;
-			if (reg.getCourseCode().equals("null")) {
-				preparedStmt.setString(i++, "");
-			} else {
-				preparedStmt.setString(i++, reg.getCourseCode());
-			}
-			preparedStmt.setString(i++, reg.getGender());
-			String[] s = reg.getBirthDay().split("-");
-			preparedStmt.setDate(i++,
-					Date.valueOf(LocalDate.of(Integer.parseInt(s[2]), Integer.parseInt(s[1]), Integer.parseInt(s[0]))));
-			preparedStmt.setString(i++, reg.getFirstName());
-			preparedStmt.setString(i++, reg.getInsertion());
-			preparedStmt.setString(i++, reg.getLastName());
-			preparedStmt.setString(i++, reg.getParentsName());
-			preparedStmt.setString(i++, reg.getAddress());
-			preparedStmt.setString(i++, reg.getTown());
-			preparedStmt.setString(i++, reg.getAddressNr());
-			preparedStmt.setString(i++, reg.getZipCode());
-			preparedStmt.setString(i++, reg.getEmail());
-			preparedStmt.setString(i++, reg.getPhoneNumber());
-			preparedStmt.setString(i++, reg.getIban());
-			preparedStmt.setString(i++, reg.getNameAccountHolder());
-			preparedStmt.setString(i++, reg.getPaymentOption());
-			preparedStmt.setString(i++, reg.getPrice());
-			preparedStmt.setTimestamp(i++, Timestamp.valueOf(reg.getMandateDate()));
-			preparedStmt.setBoolean(i++, false);
-			preparedStmt.setString(i++, reg.getMollieId());
-			preparedStmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		PreparedStatement preparedStmt = con.prepareStatement(query);
+		int i = 1;
+		if (reg.getCourseCode().equals("null")) {
+			preparedStmt.setString(i++, "");
+		} else {
+			preparedStmt.setString(i++, reg.getCourseCode());
 		}
+		preparedStmt.setString(i++, reg.getGender());
+		String[] s = reg.getBirthDay().split("-");
+		preparedStmt.setDate(i++,
+				Date.valueOf(LocalDate.of(Integer.parseInt(s[2]), Integer.parseInt(s[1]), Integer.parseInt(s[0]))));
+		preparedStmt.setString(i++, reg.getFirstName());
+		preparedStmt.setString(i++, reg.getInsertion());
+		preparedStmt.setString(i++, reg.getLastName());
+		preparedStmt.setString(i++, reg.getParentsName());
+		preparedStmt.setString(i++, reg.getAddress());
+		preparedStmt.setString(i++, reg.getTown());
+		preparedStmt.setString(i++, reg.getAddressNr());
+		preparedStmt.setString(i++, reg.getZipCode());
+		preparedStmt.setString(i++, reg.getEmail());
+		preparedStmt.setString(i++, reg.getPhoneNumber());
+		preparedStmt.setString(i++, reg.getIban());
+		preparedStmt.setString(i++, reg.getNameAccountHolder());
+		preparedStmt.setString(i++, reg.getPaymentOption());
+		preparedStmt.setString(i++, reg.getPrice());
+		preparedStmt.setTimestamp(i++, Timestamp.valueOf(reg.getMandateDate()));
+		preparedStmt.setBoolean(i++, false);
+		preparedStmt.setString(i++, reg.getMollieId());
+		preparedStmt.execute();
 		for (SecondRegistration su : reg.getSecondCourses()) {
-			try {
-				PreparedStatement preparedStmt = con.prepareStatement(query);
-				int i = 1;
-				preparedStmt.setString(i++, su.getCourseCode());
-				preparedStmt.setString(i++, su.getGender());
-				String[] s = su.getBirthday().split("-");
-				preparedStmt.setDate(i++, Date
-						.valueOf(LocalDate.of(Integer.parseInt(s[2]), Integer.parseInt(s[1]), Integer.parseInt(s[0]))));
-				preparedStmt.setString(i++, su.getFirstName());
-				preparedStmt.setString(i++, su.getInsertion());
-				preparedStmt.setString(i++, su.getLastName());
-				preparedStmt.setString(i++, reg.getParentsName());
-				preparedStmt.setString(i++, reg.getAddress());
-				preparedStmt.setString(i++, reg.getTown());
-				preparedStmt.setString(i++, reg.getAddressNr());
-				preparedStmt.setString(i++, reg.getZipCode());
-				preparedStmt.setString(i++, reg.getEmail());
-				preparedStmt.setString(i++, reg.getPhoneNumber());
-				preparedStmt.setString(i++, reg.getIban());
-				preparedStmt.setString(i++, reg.getNameAccountHolder());
-				preparedStmt.setString(i++, reg.getPaymentOption());
-				preparedStmt.setString(i++, su.getPrice());
-				preparedStmt.setTimestamp(i++, Timestamp.valueOf(reg.getMandateDate()));
-				preparedStmt.setBoolean(i++, false);
-				preparedStmt.setString(i++, reg.getMollieId());
-				preparedStmt.execute();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
+				PreparedStatement preparedStmt1 = con.prepareStatement(query);
+				int i1 = 1;
+				preparedStmt1.setString(i1++, su.getCourseCode());
+				preparedStmt1.setString(i1++, su.getGender());
+				String[] s1 = su.getBirthday().split("-");
+				preparedStmt1.setDate(i1++, Date
+						.valueOf(LocalDate.of(Integer.parseInt(s1[2]), Integer.parseInt(s1[1]), Integer.parseInt(s1[0]))));
+				preparedStmt1.setString(i1++, su.getFirstName());
+				preparedStmt1.setString(i1++, su.getInsertion());
+				preparedStmt1.setString(i1++, su.getLastName());
+				preparedStmt1.setString(i1++, reg.getParentsName());
+				preparedStmt1.setString(i1++, reg.getAddress());
+				preparedStmt1.setString(i1++, reg.getTown());
+				preparedStmt1.setString(i1++, reg.getAddressNr());
+				preparedStmt1.setString(i1++, reg.getZipCode());
+				preparedStmt1.setString(i1++, reg.getEmail());
+				preparedStmt1.setString(i1++, reg.getPhoneNumber());
+				preparedStmt1.setString(i1++, reg.getIban());
+				preparedStmt1.setString(i1++, reg.getNameAccountHolder());
+				preparedStmt1.setString(i1++, reg.getPaymentOption());
+				preparedStmt1.setString(i1++, su.getPrice());
+				preparedStmt1.setTimestamp(i1++, Timestamp.valueOf(reg.getMandateDate()));
+				preparedStmt1.setBoolean(i1++, false);
+				preparedStmt1.setString(i1++, reg.getMollieId());
+				preparedStmt1.execute();
 		}
 	}
-	
+
 	public void saveSecondRegistrations(Registration reg) {
 		String query = "INSERT INTO registration (course_code, gender, birthdate, first_name, insertion, last_name, parents_name, address, town, address_nr, zipcode, email, phone_number, iban, name_bank_holder, payment_option, course_price, mandate_date, completed_mollie, mollie_id)"
 				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -616,7 +608,7 @@ public class SQLConnection {
 		// execute the query, and get a java resultset
 		stmn.execute(query);
 	}
-	
+
 	public int getAmountOfRegistrationsOfCourse(String courseCode) {
 		ArrayList<Integer> registrationIds = new ArrayList<>();
 		String query = "select registration_id from registration where course_code = ?";
@@ -624,7 +616,7 @@ public class SQLConnection {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			preparedStmt.setString(1, courseCode);
 			ResultSet rs = preparedStmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				registrationIds.add(rs.getInt(1));
 			}
 		} catch (SQLException e) {
@@ -632,7 +624,7 @@ public class SQLConnection {
 		}
 		return registrationIds.size();
 	}
-	
+
 	public int getAmountOfWaitersOfCourse(String courseCode) {
 		ArrayList<Integer> waitingListIds = new ArrayList<>();
 		String query = "select waiting_id from waiting_list where course_code = ?";
@@ -640,7 +632,7 @@ public class SQLConnection {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			preparedStmt.setString(1, courseCode);
 			ResultSet rs = preparedStmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				waitingListIds.add(rs.getInt(1));
 			}
 		} catch (SQLException e) {
