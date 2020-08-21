@@ -170,9 +170,12 @@ $("#registrationForm").submit(function() {
 	$("#registrationForm").css("display", "none");
 	$("#beginSection").css("display", "none");
 	$("#courseIsFullBefore").css("display", "none");
+	var doneWithProcessing = false;
 	setTimeout(function() {
-		$("#processRegistration").css("display", "none");
-		$("#processTakesLongerThenExpected").css("display", "block");
+		if(!doneWithProcessing) {
+			$("#processRegistration").css("display", "none");
+			$("#processTakesLongerThenExpected").css("display", "block");
+		}
 	}, 4000);
 	$.ajax({
 		type : 'POST',
@@ -182,9 +185,9 @@ $("#registrationForm").submit(function() {
 		},
 		url : 'FormController',
 		success : function(result) {
-			console.log(result);
 			$("#processTakesLongerThenExpected").css("display", "none");
 			$("#processRegistration").css("display", "none");
+			doneWithProcessing = true;
 			if(result=="false") {
 				$("#registrationFailed").css("display", "block");
 			} else if (result == "full") {
@@ -192,7 +195,7 @@ $("#registrationForm").submit(function() {
 				$("#nameOfStudent").text($("#firstName").val());
 			} else if (result == "saved") {
 				$("#paymentSuccess").css("display", "block");
-			}else {
+			} else {
 				window.location.href = result;
 			}
 		}

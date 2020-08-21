@@ -38,7 +38,7 @@ public class EmailUtil {
 				nameMessage += "<tr> <td width='30%' style='width: 30.0%; background: #01ACE4; padding: 3.75pt 3.75pt 3.75pt 3.75pt'> <p class='MsoNormal'> <span style='color: white'>Voor- en achternaam</span> </p> </td> <td style='padding: 3.75pt 3.75pt 3.75pt 3.75pt'> <p class='MsoNormal'> <span style='color: #0186B1'>"
 						+ name + "</span> </p> </td></tr>";
 			}
-			msg.setSubject("Inschrijving is verzonden");
+			msg.setSubject("Uw inschrijving is ontvangen!");
 
 			String message = "<p class='MsoNormal' align='center' style='text-align: center'> <a href='https://www.thehouseoftyping.nl/' rel='noopener noreferrer'><span style='text-decoration: none'><img border='0' width='100' height='100' id='_x0000_i1025' src='https://www.thehouseoftyping.nl/mail/assets/logo-eco-house-of-typing.png' alt='The House of Typing'></span></a> </p> <div align='center'> <table class='MsoNormalTable' width='600' style='width: 450.0pt; border-collapse: collapse'> <tbody> <tr> <td style='background: white; padding: 15.0pt 15.0pt 15.0pt 15.0pt'> <p style='line-height: 15.0pt; mso-line-height-rule: exactly'> <span style='font-size: 11.5pt; font-family: & amp; amp; quot; Arial & amp; quot; ,& amp; amp; quot; sans-serif & amp; quot;; color: #333333'>Hallo "
 					+ firstName
