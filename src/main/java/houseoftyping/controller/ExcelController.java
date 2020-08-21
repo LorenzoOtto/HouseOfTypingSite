@@ -240,7 +240,7 @@ public class ExcelController extends HttpServlet {
 					}
 				}
 				Course c = new Course(valuesFromExcel);
-				if (c.getCourseCode() == null) {
+				if (c.getCourseCode().equals(null)) {
 				} else {
 					c.save(sql);
 				}
